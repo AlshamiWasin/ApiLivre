@@ -1,11 +1,11 @@
 import mysql.connector
-
+import Conf.confDB as conf
 
 mydb = mysql.connector.connect(
-    host="localhost",
-    user="your_username",
-    password="your_password",
-    database="your_database"
+    host=conf.host,
+    user=conf.user,
+    password=conf.password,
+    database=conf.database
 )
 
 
