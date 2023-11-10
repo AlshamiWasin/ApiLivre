@@ -1,5 +1,4 @@
-
 host="localhost",
-user="your_username",
-password="your_password",
-database="your_database"
+user="root",
+password="",
+database="librairie"
