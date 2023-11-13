@@ -2,7 +2,7 @@ import db
 
 connection = db.db
 
-class Commantaire(connection.Model):
+class Ouvrage(connection.Model):
     id_ouvrage = connection.Column(connection.Integer, primary_key=True, autoincrement=True)
     titre_ouvrage = connection.Column(connection.String(255))
     auteur_ouvrage = connection.Column(connection.String(255))
@@ -19,8 +19,7 @@ class Commantaire(connection.Model):
     description_ouvrage =  connection.Column(connection.String)
 
 
-    def __init__(self , id_ouvrage, titre_ouvrage, auteur_ouvrage, langue_ouvrage, prix_ouvrage, date_parution_ouvrage, categorie_ouvrage, date_disponibilite_libraire_ouvrage, date_disponibilite_particulier_ouvrage, image_ouvrage, table_des_matieres_ouvrage, mot_cle_ouvrage, description_ouvrage):
-        self.id_ouvrage = id_ouvrage
+    def __init__(self, titre_ouvrage, auteur_ouvrage, langue_ouvrage, prix_ouvrage, date_parution_ouvrage, categorie_ouvrage, date_disponibilite_libraire_ouvrage, date_disponibilite_particulier_ouvrage, image_ouvrage, table_des_matieres_ouvrage, mot_cle_ouvrage, description_ouvrage):
         self.titre_ouvrage = titre_ouvrage
         self.auteur_ouvrage = auteur_ouvrage
         self.langue_ouvrage = langue_ouvrage
@@ -35,6 +34,10 @@ class Commantaire(connection.Model):
         self.mot_cle_ouvrage = mot_cle_ouvrage
         self.description_ouvrage = description_ouvrage
 
+    def __init__(self, titre_ouvrage, auteur_ouvrage):
+        self.titre_ouvrage = titre_ouvrage,
+        self.auteur_ouvrage = auteur_ouvrage
+    
 
     def serialize(self):
         return {

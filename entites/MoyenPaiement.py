@@ -2,7 +2,7 @@ import db
 
 connection = db.db
 
-class Commantaire(connection.Model):
+class MoyenPaiement(connection.Model):
     id_moyen_paiement = connection.Column(connection.Integer, primary_key=True, autoincrement=True)
     type_paiement = connection.Column(connection.Sting(20))
     nom_proprietaire_paiement = connection.Column(connection.String(255))
