@@ -1,5 +1,6 @@
 import db
 
+# Liaison avec la BDD
 connection = db.db
 
 class Client(connection.Model):
