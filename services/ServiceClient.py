@@ -25,7 +25,7 @@ class ServiceClient:
                             prenom_client = prenom, 
                             email_client = email , 
                             telephone_client = tel )
-        # ouvrir la connexion avec las BDD et ajouter un client à la BD
+        # ouvrir la connexion et ajouter un client à la BDD
         connection.session.add(new_client)
         # sauvegarder et fermer la connexion avec la BDD
         connection.session.commit()
