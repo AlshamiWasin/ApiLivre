@@ -2,8 +2,8 @@ import db
 
 connection = db.db
 
-class Commantaire(connection.Model):
-    id_commantaire = connection.Column(connection.Integer, primary_key=True, autoincrement=True)
+class Commentaire(connection.Model):
+    id_commentaire = connection.Column(connection.Integer, primary_key=True, autoincrement=True)
     id_client = connection.Column(connection.Integer, index=True)
     id_ouvrage = connection.Column(connection.Integer, index=True)
     date_publication_commentaire = connection.Column(connection.DateTime)
