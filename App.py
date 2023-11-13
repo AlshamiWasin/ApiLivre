@@ -1,24 +1,18 @@
-import mysql.connector
-import Conf.confDB as conf
+from flask import Flask
+import db
+from Conf import confDB
 
-mydb = mysql.connector.connect(
-    host=conf.host,
-    user=conf.user,
-    password=conf.password,
-    database=conf.database
-)
+connection = db.db
 
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{confDB.user}:{confDB.password}@{confDB.host}/{confDB.database}"
 
-mycursor = mydb.cursor()
+# Initialize la conenction a la db
+connection.init_app(app)
 
-mycursor.execute("SELECT * FROM client")
+# Register the Controller
+from controllers.ControllerClient import client
+app.register_blueprint(client)
 
-# Fetch the result
-result = mycursor.fetchall()
-
-for row in result:
-    print(row)
-
-
-
-mydb.close()
+if __name__ == '__main__':
+    app.run(debug=True)
