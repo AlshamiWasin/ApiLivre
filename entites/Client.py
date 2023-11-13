@@ -31,6 +31,7 @@ class Client(connection.Model):
     #         'adresse_facturation_client': self.adresse_facturation_client
     #     }
 
+
     def serialize(self):
         return {
             'nom_client': self.nom_client,
