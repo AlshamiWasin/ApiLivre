@@ -10,9 +10,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{confDB.user}:{confDB.
 # Initialise la connection à la BDD
 connection.init_app(app)
 
-# Register the Controller
+# Register the Controllers
+#Controller Client
 from controllers.ControllerClient import client
 app.register_blueprint(client)
+
+# Controller Ouvrage
+from controllers.ControllerOuvrage import ouvrage
+app.register_blueprint(ouvrage)
 
 from controllers.ControllerCommande import commande
 app.register_blueprint(commande)
