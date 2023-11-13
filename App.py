@@ -14,5 +14,8 @@ connection.init_app(app)
 from controllers.ControllerClient import client
 app.register_blueprint(client)
 
+from controllers.ControllerCommande import commande
+app.register_blueprint(commande)
+
 if __name__ == '__main__':
     app.run(debug=True)

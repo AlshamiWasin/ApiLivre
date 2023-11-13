@@ -1,4 +1,4 @@
 host="localhost"
 user="root"
-password=""
+password="Lonalolo2006.."
 database="librairie"
