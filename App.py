@@ -7,7 +7,7 @@ connection = db.db
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{confDB.user}:{confDB.password}@{confDB.host}/{confDB.database}"
 
-# Initialize la conenction a la db
+# Initialise la connection à la BDD
 connection.init_app(app)
 
 # Register the Controller
