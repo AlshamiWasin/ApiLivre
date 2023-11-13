@@ -529,4 +529,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/python,vs
+# End of https://www.toptal.com/developers/gitignore/api/python,vsConf/confDB.py
+Conf/confDB.py
