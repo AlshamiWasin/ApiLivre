@@ -6,13 +6,13 @@ client = Blueprint('client', __name__)
 serviceClient = ServiceClient
 
 
-# Define the Rotues
+# Define the routes
 @client.route('/clients' , methods=['GET'])
 def getClients():
     return serviceClient.getAllClients()
     
 
-# Define the Rotues
+# Define the Routes
 @client.route('/client/<int:id_client>' , methods=['GET'])
 def getClientById(id_client):
     client = serviceClient.getClientById(id_client)
@@ -22,6 +22,9 @@ def getClientById(id_client):
         return jsonify({'message': 'Client not found'}), 400
 
 
+''' POST
+Créer un nouveau client dans la BDD
+'''
 @client.route('/client' , methods=['POST'])
 def createClient():
     data = request.json
