@@ -2,7 +2,7 @@ import db
 
 connection = db.db
 
-class Commantaire(connection.Model):
+class MoyenPaiement(connection.Model):
     id_moyen_paiement = connection.Column(connection.Integer, primary_key=True, autoincrement=True)
     type_paiement = connection.Column(connection.Sting(20))
     nom_proprietaire_paiement = connection.Column(connection.String(255))
@@ -11,8 +11,7 @@ class Commantaire(connection.Model):
     code_secu_paiement =  connection.Column(connection.String(4))
 
 
-    def __init__(self , id_moyen_paiement, type_paiement, nom_proprietaire_paiement, numero_moyen_paiement, date_expiration_paiement, code_secu_paiement):
-        self.id_moyen_paiement = id_moyen_paiement
+    def __init__(self ,type_paiement, nom_proprietaire_paiement, numero_moyen_paiement, date_expiration_paiement, code_secu_paiement):
         self.type_paiement = type_paiement
         self.nom_proprietaire_paiement = nom_proprietaire_paiement
         self.numero_moyen_paiement = numero_moyen_paiement
@@ -22,7 +21,6 @@ class Commantaire(connection.Model):
         
     def serialize(self):
         return {
-            'id_moyen_paiement': self.id_moyen_paiement,
             'type_paiement': self.type_paiement,
             'nom_proprietaire_paiement': self.nom_proprietaire_paiement,
             'numero_moyen_paiement': self.numero_moyen_paiement,

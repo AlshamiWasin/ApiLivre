@@ -2,7 +2,7 @@ import db
 
 connection = db.db
 
-class ThemeOuvrage(connection.Model):
+class ClientMoyenPaiement(connection.Model):
     id_client = connection.Column(connection.Integer, primary_key=True)
     id_moyen_paiement  = connection.Column(connection.Integer, primary_key=True)
 
