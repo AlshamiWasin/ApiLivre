@@ -11,8 +11,7 @@ class MoyenPaiement(connection.Model):
     code_secu_paiement =  connection.Column(connection.String(4))
 
 
-    def __init__(self , id_moyen_paiement, type_paiement, nom_proprietaire_paiement, numero_moyen_paiement, date_expiration_paiement, code_secu_paiement):
-        self.id_moyen_paiement = id_moyen_paiement
+    def __init__(self ,type_paiement, nom_proprietaire_paiement, numero_moyen_paiement, date_expiration_paiement, code_secu_paiement):
         self.type_paiement = type_paiement
         self.nom_proprietaire_paiement = nom_proprietaire_paiement
         self.numero_moyen_paiement = numero_moyen_paiement
@@ -22,7 +21,6 @@ class MoyenPaiement(connection.Model):
         
     def serialize(self):
         return {
-            'id_moyen_paiement': self.id_moyen_paiement,
             'type_paiement': self.type_paiement,
             'nom_proprietaire_paiement': self.nom_proprietaire_paiement,
             'numero_moyen_paiement': self.numero_moyen_paiement,

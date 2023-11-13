@@ -9,7 +9,9 @@ serviceClient = ServiceClient
 # Define the routes
 @client.route('/clients' , methods=['GET'])
 def getClients():
-    return serviceClient.getAllClients()
+    clients = serviceClient.getAllClients()
+    serialized_clients = [client.serialize() for client in clients]
+    return jsonify(serialized_clients)
     
 
 # Define the Routes
@@ -35,10 +37,10 @@ def createClient():
     tel = data.get('tel')
 
     if nom and prenom and email and tel:
-        client = serviceClient.createClient(data.get('nom') , 
-                                      data.get('prenom') ,
-                                      data.get('email') ,
-                                      data.get('tel'))
+        client = serviceClient.createClient(nom , 
+                                      prenom,
+                                      email,
+                                      tel)
         # return jsonify(user.serialize)
         return jsonify(client.serialize()), 200 
     else:

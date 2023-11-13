@@ -19,5 +19,8 @@ app.register_blueprint(client)
 from controllers.ControllerOuvrage import ouvrage
 app.register_blueprint(ouvrage)
 
+from controllers.ControllerCommande import commande
+app.register_blueprint(commande)
+
 if __name__ == '__main__':
     app.run(debug=True)

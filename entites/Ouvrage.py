@@ -42,7 +42,6 @@ class Ouvrage(connection.Model):
 
     def serialize(self):
         return {
-            'id_ouvrage': self.id_ouvrage,
             'titre_ouvrage': self.titre_ouvrage,
             'auteur_ouvrage': self.auteur_ouvrage,
             'isbn_ouvrage' : self.isbn_ouvrage,
