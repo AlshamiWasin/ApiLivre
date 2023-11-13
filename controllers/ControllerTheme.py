@@ -32,7 +32,7 @@ def createTheme():
     nom = data.get('nom')
 
     if nom :
-        theme = serviceTheme.createtheme(data.get('nom'))
+        theme = serviceTheme.createtheme(nom)
 
         # return jsonify(user.serialize)
         return jsonify(theme.serialize()), 200 
