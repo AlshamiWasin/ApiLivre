@@ -33,7 +33,6 @@ class Client(connection.Model):
     #     }
 
 
-
     def serialize(self):
         return {
             'nom_client': self.nom_client,
