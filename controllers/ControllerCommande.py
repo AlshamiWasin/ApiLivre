@@ -9,7 +9,35 @@ serviceCommande = ServiceCommande
 # Define the routes
 @commande.route('/commandes' , methods=['GET'])
 def getCommands():
-    return serviceCommande.getAllCommande()
+    commandes = serviceCommande.getAllCommande()
+    serialized_commandes = [commande.serialize() for commande in commandes]
+    return jsonify(serialized_commandes)
+    
+    return 
+
+
+''' POST
+Créer un nouveau commande dans la BDD
+'''
+@commande.route('/commande' , methods=['POST'])
+def createClient():
+    data = request.json
+
+    idClient = data.get('idClient')
+    idOuvrage = data.get('idOuvrage')
+    idMP = data.get('idMP')
+    montant = data.get('montant')
+
+    if idClient and idOuvrage and idMP and montant:
+        client = serviceCommande.createCommand(idClient, 
+                                      idOuvrage,
+                                      idMP,
+                                      montant)
+        # return jsonify(user.serialize)
+        return jsonify(client.serialize()), 200 
+    else:
+        return jsonify({'message': 'Invalid input'}), 400
+
 
 @commande.route('/commands/<int:command_id>', methods=['GET'])
 def getCommand(command_id):

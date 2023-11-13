@@ -37,10 +37,10 @@ def createClient():
     tel = data.get('tel')
 
     if nom and prenom and email and tel:
-        client = serviceClient.createClient(data.get('nom') , 
-                                      data.get('prenom') ,
-                                      data.get('email') ,
-                                      data.get('tel'))
+        client = serviceClient.createClient(nom , 
+                                      prenom,
+                                      email,
+                                      tel)
         # return jsonify(user.serialize)
         return jsonify(client.serialize()), 200 
     else:

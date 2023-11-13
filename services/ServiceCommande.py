@@ -1,5 +1,6 @@
 from entites.Commande import Commande
 import db
+from datetime import datetime
 
 connection = db.db
 
@@ -12,12 +13,12 @@ class ServiceCommande:
         return Commande.query.all()
     
 
-    def createCommand(id_client, id_ouvrage, id_moyen_paiement, date_commande, montant):
+    def createCommand(id_client, id_ouvrage, id_moyen_paiement,montant):
         new_command = Commande(
             id_client=id_client,
             id_ouvrage=id_ouvrage,
             id_moyen_paiement=id_moyen_paiement,
-            date_commande=date_commande,
+            date_commande=datetime.now(),
             montant=montant
         )
         connection.session.add(new_command)
