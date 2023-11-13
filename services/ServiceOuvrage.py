@@ -40,16 +40,45 @@ class ServiceOuvrage:
     Créer un nouvel ouvrage dans la BDD
     Avec tous les paramètres
     '''
-    def createOuvrageTitreAuteur(titre, auteur):
+    def createOuvrage(titre,
+                      auteur,
+                      isbn,
+                      langue,
+                      prix,
+                      date,
+                      categorie,
+                      date_disponibilite_libraire,
+                      date_disponibilite_particulier,
+                      image,
+                      table_des_matieres,
+                      date_parution,
+                      mot_cle,
+                      description):
         # on se sert d'un objet Ouvrage pour y remplir les informations
         new_ouvrage = Ouvrage(titre_ouvrage = titre, 
-                            auteur_ouvrage = auteur)
+                            auteur_ouvrage = auteur,
+                            isbn_ouvrage = isbn,
+                            langue_ouvrage = langue,
+                            prix_ouvrage = prix,
+                            date_parution_ouvrage = date,
+                            categorie_ouvrage = categorie,
+                            date_disponibilite_libraire_ouvrage = date_disponibilite_libraire,
+                            date_disponibilite_particulier_ouvrage = date_disponibilite_particulier,
+                            image_ouvrage = image,
+                            table_des_matieres_ouvrage = table_des_matieres,
+                            mot_cle_ouvrage = mot_cle,
+                            description_ouvrage = description
+                            )
         # ouvrir la connexion et ajouter un client à la BDD
         connection.session.add(new_ouvrage)
         # sauvegarder et fermer la connexion avec la BDD
         connection.session.commit()
         return new_ouvrage
     
+
+
+    # ATTENTION COPIER / COLLER CLIENTS
+
     # def updateClient(client_id, new_nom, new_prenom , new_email, new_tel): 
     #     client = Client.query.get(client_id)
     #     if client:

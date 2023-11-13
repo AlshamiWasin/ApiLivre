@@ -12,7 +12,10 @@ Récupérer tous les ouvrages
 # Define the route
 @ouvrage.route('/ouvrages' , methods=['GET'])
 def getAllOuvrages():
-    return serviceOuvrage.getAllOuvrages()
+    ouvrages = serviceOuvrage.getAllOuvrages()
+    # transformer le résultat en liste JSON
+    serialized_ouvrages = [ouvrage.serialize() for ouvrage in ouvrages]
+    return jsonify(serialized_ouvrages)
 
 
 ''' GET
@@ -33,7 +36,7 @@ Créer un nouvel ouvrage dans la BDD
 Avec en paramètres seulement titre et auteur
 Utile pour tester rapidement !
 '''
-@ouvrage.route('/ouvrage' , methods=['POST'])
+@ouvrage.route('/ouvrageTitreAuteur' , methods=['POST'])
 def createOuvrageTitreAuteur():
     data = request.json
 
@@ -48,7 +51,49 @@ def createOuvrageTitreAuteur():
         return jsonify({'message': 'Invalid input'}), 400
 
 
+''' POST
+Créer un nouvel ouvrage dans la BDD
+Avec tous les paramètres
+'''
+@ouvrage.route('/ouvrage' , methods=['POST'])
+def createOuvrage():
+    data = request.json
 
+    titre = data.get('titre')
+    auteur = data.get('auteur')
+    isbn = data.get('isbn')
+    langue = data.get('langue')
+    prix = data.get('prix')
+    date = data.get('date')
+    categorie = data.get('categorie')
+    date_disponibilite_libraire = data.get('date_disponibilite_libraire')
+    date_disponibilite_particulier = data.get('date_disponibilite_particulier')
+    image = data.get('image')
+    table_des_matieres = data.get('table_des_matieres')
+    date_parution = data.get('date_parution')
+    mot_cle = data.get('mot_cle')
+    description = data.get('description')
+
+    # paramètres obligatoires
+    if titre and auteur and isbn :
+        ouvrage = serviceOuvrage.createOuvrage(data.get('titre'), 
+                                      data.get('auteur'),
+                                      data.get('isbn'),
+                                      data.get('langue'),
+                                      data.get('prix'),
+                                      data.get('date_parution'),
+                                      data.get('date'),
+                                      data.get('categorie'),
+                                      data.get('date_disponibilite_libraire'),
+                                      data.get('date_disponibilite_particulier'),
+                                      data.get('image'),
+                                      data.get('table_des_matieres'),
+                                      data.get('mot_cle'),
+                                      data.get('description')
+                                      )
+        return jsonify(ouvrage.serialize()), 200
+    else:
+        return jsonify({'message': 'Invalid input'}), 400
 
 
 # @client.route('/client/<int:client_id>', methods=['PUT'])

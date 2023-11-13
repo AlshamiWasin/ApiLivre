@@ -4,6 +4,10 @@ import db
 connection = db.db
 
 class ServiceClient:
+
+    ''' GET
+    Récupérer tous les clients
+    ''' 
     def getAllClients():
         return Client.query.all()
     

@@ -19,9 +19,10 @@ class Ouvrage(connection.Model):
     description_ouvrage =  connection.Column(connection.String)
 
 
-    def __init__(self, titre_ouvrage, auteur_ouvrage, langue_ouvrage, prix_ouvrage, date_parution_ouvrage, categorie_ouvrage, date_disponibilite_libraire_ouvrage, date_disponibilite_particulier_ouvrage, image_ouvrage, table_des_matieres_ouvrage, mot_cle_ouvrage, description_ouvrage):
+    def __init__(self, titre_ouvrage, auteur_ouvrage, isbn_ouvrage, langue_ouvrage, prix_ouvrage, date_parution_ouvrage, categorie_ouvrage, date_disponibilite_libraire_ouvrage, date_disponibilite_particulier_ouvrage, image_ouvrage, table_des_matieres_ouvrage, mot_cle_ouvrage, description_ouvrage):
         self.titre_ouvrage = titre_ouvrage
         self.auteur_ouvrage = auteur_ouvrage
+        self.isbn_ouvrage = isbn_ouvrage
         self.langue_ouvrage = langue_ouvrage
         self.prix_ouvrage = prix_ouvrage
         self.date_parution_ouvrage = date_parution_ouvrage
@@ -44,6 +45,7 @@ class Ouvrage(connection.Model):
             'id_ouvrage': self.id_ouvrage,
             'titre_ouvrage': self.titre_ouvrage,
             'auteur_ouvrage': self.auteur_ouvrage,
+            'isbn_ouvrage' : self.isbn_ouvrage,
             'langue_ouvrage': self.langue_ouvrage,
             'prix_ouvrage': self.prix_ouvrage,
             'date_parution_ouvrage': self.date_parution_ouvrage,
