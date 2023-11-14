@@ -31,7 +31,6 @@ class Ouvrage(connection.Model):
         self.date_disponibilite_particulier_ouvrage = date_disponibilite_particulier_ouvrage
         self.image_ouvrage = image_ouvrage
         self.table_des_matieres_ouvrage = table_des_matieres_ouvrage
-        self.date_parution_ouvrage = date_parution_ouvrage
         self.mot_cle_ouvrage = mot_cle_ouvrage
         self.description_ouvrage = description_ouvrage
 
@@ -42,6 +41,25 @@ class Ouvrage(connection.Model):
 
     def serialize(self):
         return {
+            'titre_ouvrage': self.titre_ouvrage,
+            'auteur_ouvrage': self.auteur_ouvrage,
+            'isbn_ouvrage' : self.isbn_ouvrage,
+            'langue_ouvrage': self.langue_ouvrage,
+            'prix_ouvrage': self.prix_ouvrage,
+            'date_parution_ouvrage': self.date_parution_ouvrage,
+            'categorie_ouvrage': self.categorie_ouvrage,
+            'date_disponibilite_libraire_ouvrage': self.date_disponibilite_libraire_ouvrage,
+            'date_disponibilite_particulier_ouvrage': self.date_disponibilite_particulier_ouvrage,
+            'image_ouvrage': self.image_ouvrage,
+            'table_des_matieres_ouvrage': self.table_des_matieres_ouvrage,
+            'date_parution_ouvrage': self.date_parution_ouvrage,
+            'mot_cle_ouvrage': self.mot_cle_ouvrage,
+            'description_ouvrage': self.description_ouvrage,
+        }
+    
+    def serializeFull(self):
+        return {
+            'id_ouvrage': self.id_ouvrage,
             'titre_ouvrage': self.titre_ouvrage,
             'auteur_ouvrage': self.auteur_ouvrage,
             'isbn_ouvrage' : self.isbn_ouvrage,
