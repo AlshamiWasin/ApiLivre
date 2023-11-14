@@ -14,7 +14,7 @@ Récupérer tous les ouvrages
 def getAllOuvrages():
     ouvrages = serviceOuvrage.getAllOuvrages()
     # transformer le résultat en liste JSON
-    serialized_ouvrages = [ouvrage.serialize() for ouvrage in ouvrages]
+    serialized_ouvrages = [ouvrage.serializeFull() for ouvrage in ouvrages] #serializeFull pour récupérer aussi l'ID
     return jsonify(serialized_ouvrages)
 
 
@@ -66,6 +66,7 @@ def createOuvrage():
     titre = data.get('titre')
     auteur = data.get('auteur')
     isbn = data.get('isbn')
+
     langue = data.get('langue')
     prix = data.get('prix')
     date_parution = data.get('date_parution')
@@ -78,7 +79,7 @@ def createOuvrage():
     description = data.get('description')
 
     #si les attributs sont bien récupérés
-    if titre and auteur and isbn and langue and prix and date_parution and categorie and date_disponibilite_libraire and date_disponibilite_particulier and table_des_matieres and mot_cle and description :
+    if titre and auteur and isbn :
         # remplissage avec les infos
         ouvrage = serviceOuvrage.createOuvrage(titre, 
                                       auteur,
@@ -102,40 +103,57 @@ def createOuvrage():
 ''' PUT
 Update d'un ouvrage par son ID
 '''
-# @ouvrage.route('/ouvrage/<int:id_ouvrage>', methods=['PUT'])
-# def updateOuvrage(id_ouvrage):
-#     récupération des données
-#     data = request.json
+@ouvrage.route('/ouvrage/<int:id_ouvrage>', methods=['PUT'])
+def updateOuvrage(id_ouvrage):
+    # récupération des données
+    data = request.json
 
-#     récupération des attributs
-#     titre = data.get('titre')
-#     auteur = data.get('auteur')
-#     isbn = data.get('isbn')
-#     langue = data.get('langue')
-#     prix = data.get('prix')
-#     date_parution = data.get('date_parution')
-#     categorie = data.get('categorie')
-#     date_disponibilite_libraire = data.get('date_disponibilite_libraire')
-#     date_disponibilite_particulier = data.get('date_disponibilite_particulier')
-#     image = data.get('image')
-#     table_des_matieres = data.get('table_des_matieres')
-#     mot_cle = data.get('mot_cle')
-#     description = data.get('description')
+    # récupération des attributs
+    titre = data.get('titre')
+    auteur = data.get('auteur')
+    isbn = data.get('isbn')
+    langue = data.get('langue')
+    prix = data.get('prix')
+    date_parution = data.get('date_parution')
+    categorie = data.get('categorie')
+    date_disponibilite_libraire = data.get('date_disponibilite_libraire')
+    date_disponibilite_particulier = data.get('date_disponibilite_particulier')
+    image = data.get('image')
+    table_des_matieres = data.get('table_des_matieres')
+    mot_cle = data.get('mot_cle')
+    description = data.get('description')
 
-#     if titre and auteur and isbn and langue and prix and date_parution and categorie and date_disponibilite_libraire and date_disponibilite_particulier and table_des_matieres and mot_cle and description :
-#         updated_client = serviceClient.updateClient(client_id, new_nom, new_prenom , new_email, new_tel)
-#         if updated_client:
-#             return jsonify(updated_client.serialize()), 200 
-#         else:
-#             return jsonify({'message': 'User not found'}), 404
-#     else:
-#         return jsonify({'message': 'Invalid input'}), 400
+    # attributs obligatoires
+    if titre and auteur and isbn :
+        updated_ouvrage = serviceOuvrage.updateOuvrage(id_ouvrage,
+                      titre,
+                      auteur,
+                      isbn,
+                      langue,
+                      prix,
+                      date_parution,
+                      categorie,
+                      date_disponibilite_libraire,
+                      date_disponibilite_particulier,
+                      image,
+                      table_des_matieres,
+                      mot_cle,
+                      description)
+        if updated_ouvrage:
+            return jsonify(updated_ouvrage.serialize()), 200 
+        else:
+            return jsonify({'message': 'Ouvrage not found'}), 404
+    else:
+        return jsonify({'message': 'Invalid input'}), 400
     
 
-# @client.route('/client/<int:client_id>', methods=['DELETE'])
-# def deleteClient(client_id):
-#     success = serviceClient.deleteClient(client_id)
-#     if success:
-#         return jsonify({'message': 'Client deleted successfully'}), 200 
-#     else:
-#         return jsonify({'message': 'Client not found'}), 404
+''' DELETE
+Supprimer un ouvrage par son ID
+'''    
+@ouvrage.route('/ouvrage/<int:id_ouvrage>', methods=['DELETE'])
+def deleteOuvrage(id_ouvrage):
+    success = serviceOuvrage.deleteOuvrage(id_ouvrage)
+    if success:
+        return jsonify({'message': 'Ouvrage deleted successfully'}), 200 
+    else:
+        return jsonify({'message': 'Ouvrage not found'}), 404
