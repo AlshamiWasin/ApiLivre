@@ -31,7 +31,6 @@ class Ouvrage(connection.Model):
         self.date_disponibilite_particulier_ouvrage = date_disponibilite_particulier_ouvrage
         self.image_ouvrage = image_ouvrage
         self.table_des_matieres_ouvrage = table_des_matieres_ouvrage
-        self.date_parution_ouvrage = date_parution_ouvrage
         self.mot_cle_ouvrage = mot_cle_ouvrage
         self.description_ouvrage = description_ouvrage
 

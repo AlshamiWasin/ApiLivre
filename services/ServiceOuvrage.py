@@ -45,22 +45,21 @@ class ServiceOuvrage:
                       isbn,
                       langue,
                       prix,
-                      date,
+                      date_parution,
                       categorie,
                       date_disponibilite_libraire,
                       date_disponibilite_particulier,
                       image,
                       table_des_matieres,
-                      date_parution,
                       mot_cle,
                       description):
         # on se sert d'un objet Ouvrage pour y remplir les informations
-        new_ouvrage = Ouvrage(titre_ouvrage = titre, 
+        ouvrage = Ouvrage(titre_ouvrage = titre, 
                             auteur_ouvrage = auteur,
                             isbn_ouvrage = isbn,
                             langue_ouvrage = langue,
                             prix_ouvrage = prix,
-                            date_parution_ouvrage = date,
+                            date_parution_ouvrage = date_parution,
                             categorie_ouvrage = categorie,
                             date_disponibilite_libraire_ouvrage = date_disponibilite_libraire,
                             date_disponibilite_particulier_ouvrage = date_disponibilite_particulier,
@@ -70,10 +69,10 @@ class ServiceOuvrage:
                             description_ouvrage = description
                             )
         # ouvrir la connexion et ajouter un client à la BDD
-        connection.session.add(new_ouvrage)
+        connection.session.add(ouvrage)
         # sauvegarder et fermer la connexion avec la BDD
         connection.session.commit()
-        return new_ouvrage
+        return ouvrage
     
 
 
