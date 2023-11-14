@@ -22,5 +22,11 @@ app.register_blueprint(ouvrage)
 from controllers.ControllerCommande import commande
 app.register_blueprint(commande)
 
+from controllers.ControllerMoyenPaiement import moyenpaiement
+app.register_blueprint(moyenpaiement)
+
+from controllers.ControllerTheme import theme
+app.register_blueprint(theme)
+
 if __name__ == '__main__':
     app.run(debug=True)
