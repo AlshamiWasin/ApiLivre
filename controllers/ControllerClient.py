@@ -9,6 +9,14 @@ serviceClient = ServiceClient
 # Define the routes
 @client.route('/clients' , methods=['GET'])
 def getClients():
+    """
+    Gets the clients list
+    ---
+
+    responses:
+      200:
+        description: List of Clients.
+    """
     clients = serviceClient.getAllClients()
     serialized_clients = [client.serialize() for client in clients]
     return jsonify(serialized_clients)
