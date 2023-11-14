@@ -1,11 +1,15 @@
 from flask import Flask
 import db
 from Conf import confDB
+from flasgger import Swagger
+
 
 connection = db.db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{confDB.user}:{confDB.password}@{confDB.host}/{confDB.database}"
+
+swagger = Swagger(app)
 
 # Initialise la connection à la BDD
 connection.init_app(app)
