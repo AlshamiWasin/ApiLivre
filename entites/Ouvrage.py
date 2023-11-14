@@ -33,10 +33,6 @@ class Ouvrage(connection.Model):
         self.table_des_matieres_ouvrage = table_des_matieres_ouvrage
         self.mot_cle_ouvrage = mot_cle_ouvrage
         self.description_ouvrage = description_ouvrage
-
-    def __init__(self, titre_ouvrage, auteur_ouvrage):
-        self.titre_ouvrage = titre_ouvrage,
-        self.auteur_ouvrage = auteur_ouvrage
     
 
     def serialize(self):

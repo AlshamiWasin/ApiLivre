@@ -33,28 +33,6 @@ def getOuvrageById(id_ouvrage):
 
 ''' POST
 Créer un nouvel ouvrage dans la BDD
-Paramètres : titre, auteur
-'''
-@ouvrage.route('/ouvrageTitreAuteur' , methods=['POST'])
-def createOuvrageTitreAuteur():
-    # récupération des données
-    data = request.json
-
-    #récupération des attributs
-    titre = data.get('titre')
-    auteur = data.get('auteur')
-
-    #si les attributs sont bien récupérés
-    if titre and auteur:
-        ouvrage = serviceOuvrage.createOuvrageTitreAuteur(titre, 
-                                      auteur)
-        return jsonify(ouvrage.serialize()), 200
-    else:
-        return jsonify({'message': 'Invalid input'}), 400
-
-
-''' POST
-Créer un nouvel ouvrage dans la BDD
 Avec tous les paramètres
 '''
 @ouvrage.route('/ouvrage' , methods=['POST'])
