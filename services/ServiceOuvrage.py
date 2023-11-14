@@ -22,22 +22,6 @@ class ServiceOuvrage:
 
     ''' POST
     Créer un nouvel ouvrage dans la BDD
-    Avec en paramètres seulement titre et auteur
-    Utile pour tester rapidement !
-    '''
-    def createOuvrageTitreAuteur(titre, auteur):
-        # on se sert d'un objet Ouvrage pour y remplir les informations
-        new_ouvrage = Ouvrage(titre_ouvrage = titre, 
-                            auteur_ouvrage = auteur)
-        # ouvrir la connexion et ajouter un client à la BDD
-        connection.session.add(new_ouvrage)
-        # sauvegarder et fermer la connexion avec la BDD
-        connection.session.commit()
-        return new_ouvrage
-    
-
-    ''' POST
-    Créer un nouvel ouvrage dans la BDD
     Avec tous les paramètres
     '''
     def createOuvrage(titre,
