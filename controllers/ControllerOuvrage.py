@@ -12,6 +12,7 @@ Récupérer tous les ouvrages
 # Define the route
 @ouvrage.route('/ouvrages' , methods=['GET'])
 def getAllOuvrages():
+    # récupérer tous
     ouvrages = serviceOuvrage.getAllOuvrages()
     # transformer le résultat en liste JSON
     serialized_ouvrages = [ouvrage.serializeFull() for ouvrage in ouvrages] #serializeFull pour récupérer aussi l'ID
@@ -56,7 +57,7 @@ def createOuvrage():
     mot_cle = data.get('mot_cle')
     description = data.get('description')
 
-    #si les attributs sont bien récupérés
+    #si les attributs obligatoires sont bien récupérés
     if titre and auteur and isbn :
         # remplissage avec les infos
         ouvrage = serviceOuvrage.createOuvrage(titre, 
@@ -90,6 +91,7 @@ def updateOuvrage(id_ouvrage):
     titre = data.get('titre')
     auteur = data.get('auteur')
     isbn = data.get('isbn')
+    
     langue = data.get('langue')
     prix = data.get('prix')
     date_parution = data.get('date_parution')
@@ -101,7 +103,7 @@ def updateOuvrage(id_ouvrage):
     mot_cle = data.get('mot_cle')
     description = data.get('description')
 
-    # attributs obligatoires
+    #si les attributs obligatoires sont bien récupérés
     if titre and auteur and isbn :
         updated_ouvrage = serviceOuvrage.updateOuvrage(id_ouvrage,
                       titre,

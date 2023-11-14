@@ -107,6 +107,7 @@ class ServiceOuvrage:
     Supprimer un ouvrage par son ID
     '''    
     def deleteOuvrage(id_ouvrage):
+        # récupération de l'ouvrage en BDD par ID
         ouvrage = Ouvrage.query.get(id_ouvrage)
         if ouvrage:
             # supprimer l'ouvrage de la BDD
