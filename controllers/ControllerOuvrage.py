@@ -16,7 +16,7 @@ def getAllOuvrages():
     ouvrages = serviceOuvrage.getAllOuvrages()
     # transformer le résultat en liste JSON
     serialized_ouvrages = [ouvrage.serializeFull() for ouvrage in ouvrages] #serializeFull pour récupérer aussi l'ID
-    return jsonify(serialized_ouvrages)
+    return jsonify(serialized_ouvrages), 200
 
 
 ''' GET
