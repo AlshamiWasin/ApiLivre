@@ -43,7 +43,7 @@ Les routes au sein des contrôleurs vont appeler les méthodes des services.
 
 ## 6. Outils et technologies :test_tube:
 
-IDE :   
+**IDE** :   
 Visual Studio Code  
 Version: 1.84.2 (user setup)  
 Commit: 1a5daa3a0231a0fbba4f14db7ec463cf99d7768e  
@@ -55,21 +55,21 @@ Node.js: 18.15.0
 V8: 11.4.183.29-electron.0  
 OS: Windows_NT x64 10.0.19045  
 
-Solution stack :   
+**Solution stack** :   
 WampServer version 3.3.0   
 Apache 2.4.54.2 Port 80 - PHP 7.4.33  
 MySQL 8.0.31 Port 3306  
 PHP 7.4.33 for CLI (Command-Line Interface)  
 
-Gestion base de données :  
+**Gestion base de données** :  
 PhpMyAdmin version 5.2.0  
 
-Langage de programmation : Python v3.12  
+**Langage de programmation** : Python v3.12  
 Langage obligatoire pour l'exercice  
-Biblithèques utilisées :   
+Bibliothèques utilisées :   
 - Flask : pour les requêtes API
 - Flask_sqlalchemey : Pour faire fonctionner Flask et SQLAlchemey
-- SQLAlchemey : Boîte à outils pour réaliser en Python des oprétations sur une base de données relationnel. Il inclus en autre un ORM( : objet-relationnal mapper : Permet de manipuler la bdd dans l'application mère, ici Python. Sans SQL.)
+- SQLAlchemey : Boîte à outils pour réaliser en Python des oprétations sur une base de données relationnel. Il inclut en autre un ORM( : objet-relationnal mapper : Permet de manipuler la bdd dans l'application mère, ici Python. Sans SQL.)
 - Pymysql : Définition des connexions avec phpmyadmin
 - Cryptography : Recevoir correctement les requêtes HTTP
 - Swagger : Solution API pour les tests
