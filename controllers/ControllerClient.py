@@ -93,6 +93,7 @@ def createClient():
 Update d'un client par son ID
 '''
 @client.route('/client/<int:client_id>', methods=['PUT'])
+
 def updateClient(client_id):
     data = request.json
     new_nom = data.get('nom')
@@ -107,7 +108,7 @@ def updateClient(client_id):
         else:
             return jsonify({'message': 'User not found'}), 404
     else:
-        return jsonify({'message': 'Invalid input'}), 400
+        return jsonify({'message': 'Invalid input'}), 415
     
 
 ''' DELETE
