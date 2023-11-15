@@ -32,9 +32,30 @@
 Voir fichier requirements.text [link to File]
 
 ## 5. Architecture
+Nous avons utilisé une architecture similaire à l'architecture MVC. 
+Nos différences sont : 
+    Nous disposons de : 
+        - Entités
+        - Contrôleurs
+        - Services
+    Les entités contiennent toutes les classes ("ouvrages", "commandes", etc ...)
+    Chaque entité est relié à un contrôleur et un service. 
 
+    Le contrôleur contient tous les routes définis pour chaque entité qui va permettre d'identifier la demande du client.  
+        Exemple : getClients, getClientById
+    
+    
+    Les services contiennet différentes méthodes qui vont nous permettres de communiquer avec la base de données avec la méthodologie CRUD (create, read, update, delete). 
+    Les routes au sein des contrôleurs vont appeler les méthodes des services.
+
+    Diagramme : 
     ```mermaid
-
+    graph TD;
+    App --> Contrôleur;
+    Contrôleur --> Service;
+    Service --> Entités;
+    Service --> Base de données;
+    ```
 
 
 
