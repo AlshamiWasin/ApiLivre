@@ -26,7 +26,7 @@ Pour le gestionnaire du site:
 
 ## 4. Exigences :warning:
 
-Voir fichier [requirements.text](requirements.txt)
+Voir fichier [requirement.text](requirement.txt)
 
 ## 5. Architecture :classical_building:
 Nous avons utilisé une architecture similaire à l'architecture MVC.  
