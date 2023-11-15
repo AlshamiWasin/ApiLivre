@@ -21,7 +21,7 @@ def getClients():
         description: Liste des clients.
     """
     clients = serviceClient.getAllClients()
-    serialized_clients = [client.serializeFull() for client in clients] #serializedFull pour récupérer aussi l'ID.
+    serialized_clients = [client.serializeFull() for client in clients]     #serializedFull() pour récupérer aussi l'ID.
     return jsonify(serialized_clients)
     
 
@@ -64,6 +64,25 @@ def createClient():
     """
     Post : Ajouter un nouveau client
     ---
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      -  name: requestBody
+         in: body
+         required: true
+         schema:
+          type: object
+          properties:
+            nom:
+              type: string
+            prenom:
+              type: string
+            email:
+              type: string
+            tel:
+              type: string
 
     responses:
       200:
@@ -84,7 +103,7 @@ def createClient():
                                       email,
                                       tel)
         # return jsonify(user.serialize)
-        return jsonify(client.serialize()), 200 
+        return jsonify(client.serializeFull()), 200     #serializedFull() pour récupérer aussi l'ID.
     else:
         return jsonify({'message': 'Invalid input'}), 400
 
@@ -95,6 +114,43 @@ Update d'un client par son ID
 @client.route('/client/<int:client_id>', methods=['PUT'])
 
 def updateClient(client_id):
+    # swagger
+    """
+    Update : Un client par son ID
+    ---
+    parameters:
+      - name: client_id
+        in: path
+        type: integer
+        required: true
+        description: L'ID du client à modifier
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            nom:
+              type: string
+              description: Nom
+            prenom:
+              type: string
+              description: Prénom
+            email:
+              type: string
+              format: email
+              description: E-mail
+            tel:
+              type: string
+              description: Téléphone
+    responses:
+      200:
+        description: Client modifié avec succès
+      404:
+        description: Client not found
+      415:
+        description: Invalid input
+    """
     data = request.json
     new_nom = data.get('nom')
     new_prenom = data.get('prenom')
@@ -116,6 +172,21 @@ Supprimer un client par son ID
 ''' 
 @client.route('/client/<int:client_id>', methods=['DELETE'])
 def deleteClient(client_id):
+    """
+    Delete : Supprimer un client par son ID
+    ---
+    parameters:
+      - name: client_id
+        in: path
+        type: integer
+        required: true
+        description: L'ID du client à supprimer
+    responses:
+      200:
+        description: Client supprimé avec succès
+      404:
+        description: Client non trouvé
+    """
     success = serviceClient.deleteClient(client_id)
     if success:
         return jsonify({'message': 'Client deleted successfully'}), 200 

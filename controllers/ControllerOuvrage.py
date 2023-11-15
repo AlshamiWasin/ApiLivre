@@ -16,7 +16,7 @@ def getAllOuvrages():
     """
     Get : Liste des ouvrages
     ---
-
+    
     responses:
       200:
         description: Ouvrages list.
@@ -63,19 +63,69 @@ Créer un nouvel ouvrage dans la BDD
 Avec tous les paramètres
 '''
 @ouvrage.route('/ouvrage' , methods=['POST'])
-def createOuvrage():
+def createOuvrage():  
     # swagger
     """
-    Post : Ajouter un nouvel ouvrage
+    Post : Ajouter un ouvrage
     ---
-
+    parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            titre:
+              type: string
+              description: Titre
+              required: true
+            auteur:
+              type: string
+              description: Auteur
+              required: true
+            isbn:
+              type: string
+              description: ISBN
+              required: true
+            langue:
+              type: string
+              description: Langue
+            prix:
+              type: number
+              description: Prix
+            date_parution:
+              type: string
+              format: date
+              description: Date de parution
+            categorie:
+              type: string
+              description: Catégorie
+            date_disponibilite_libraire:
+              type: string
+              format: date
+              description: Date de disponibilité pour les librairies
+            date_disponibilite_particulier:
+              type: string
+              format: date
+              description: Date de disponibilité pour les particuliers
+            image:
+              type: string
+              description: URL de la couverture
+            table_des_matieres:
+              type: string
+              description: Table des matières
+            mot_cle:
+              type: string
+              description: Mots-clés
+            description:
+              type: string
+              description: Description
     responses:
       200:
-        description: Ouvrage ajouté
+        description: Ouvrage ajouté avec succès
       400:
-        description: Ouvrage non ajouté
-    """    
-
+        description: Invalid input
+    """
     #récupération des données
     data = request.json
 
@@ -122,6 +172,75 @@ Update d'un ouvrage par son ID
 '''
 @ouvrage.route('/ouvrage/<int:id_ouvrage>', methods=['PUT'])
 def updateOuvrage(id_ouvrage):
+    # SWAGGER
+    """
+    Update : Modifier un ouvrage par l'ID
+    ---
+    parameters:
+      - name: id_ouvrage
+        in: path
+        type: integer
+        required: true
+        description: L'ID de l'ouvrage à modifier
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            titre:
+              type: string
+              description: Titre
+              required: true
+            auteur:
+              type: string
+              description: Auteur
+              required: true
+            isbn:
+              type: string
+              description: ISBN
+              required: true
+            langue:
+              type: string
+              description: Langue
+            prix:
+              type: number
+              description: Prix
+            date_parution:
+              type: string
+              format: date
+              description: Date de parution
+            categorie:
+              type: string
+              description: Catégorie
+            date_disponibilite_libraire:
+              type: string
+              format: date
+              description: Date de disponibilité pour les librairies
+            date_disponibilite_particulier:
+              type: string
+              format: date
+              description: Date de disponibilité pour les particuliers
+            image:
+              type: string
+              description: URL de la couverture
+            table_des_matieres:
+              type: string
+              description: Table des matières
+            mot_cle:
+              type: string
+              description: Mots-clés
+            description:
+              type: string
+              description: Description
+    responses:
+      200:
+        description: Ouvrage updated successfully
+      404:
+        description: Ouvrage not found
+      400:
+        description: Invalid input
+    """    
     # récupération des données
     data = request.json
 
@@ -170,6 +289,21 @@ Supprimer un ouvrage par son ID
 '''    
 @ouvrage.route('/ouvrage/<int:id_ouvrage>', methods=['DELETE'])
 def deleteOuvrage(id_ouvrage):
+    """
+    Delete : Supprimer un ouvrage par l'ID
+    ---
+    parameters:
+      - name: id_ouvrage
+        in: path
+        type: integer
+        required: true
+        description: L'ID de l'ouvrage à supprimer
+    responses:
+      200:
+        description: Ouvrage deleted successfully
+      404:
+        description: Ouvrage not found
+    """
     success = serviceOuvrage.deleteOuvrage(id_ouvrage)
     if success:
         return jsonify({'message': 'Ouvrage deleted successfully'}), 200 
