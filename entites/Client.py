@@ -40,3 +40,12 @@ class Client(connection.Model):
             'email_client': self.email_client,
             'telephone_client': self.telephone_client,
         }
+    
+    def serializeFull(self):
+        return {
+            'id_client': self.id_client,
+            'nom_client': self.nom_client,
+            'prenom_client': self.prenom_client,
+            'email_client': self.email_client,
+            'telephone_client': self.telephone_client,
+        }
