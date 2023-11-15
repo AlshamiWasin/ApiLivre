@@ -1,4 +1,4 @@
-from entites.Ouvrage import Ouvrage  
+from entites.Ouvrage import Ouvrage 
 import db
 
 connection = db.db

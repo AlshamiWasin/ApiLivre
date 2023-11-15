@@ -12,6 +12,15 @@ Récupérer tous les ouvrages
 # Define the route
 @ouvrage.route('/ouvrages' , methods=['GET'])
 def getAllOuvrages():
+    # swagger
+    """
+    Get : Liste des ouvrages
+    ---
+
+    responses:
+      200:
+        description: Ouvrages list.
+    """
     # récupérer tous
     ouvrages = serviceOuvrage.getAllOuvrages()
     # transformer le résultat en liste JSON
@@ -25,6 +34,23 @@ Récupérer un ouvrage par son ID
 # Define the route
 @ouvrage.route('/ouvrage/<int:id_ouvrage>' , methods=['GET'])
 def getOuvrageById(id_ouvrage):
+    # swagger
+    """
+    Get : Un ouvrage par son ID
+    ---
+    
+    parameters:
+      -  name: id_ouvrage
+         in: path
+         required: true
+         schema:
+           type : integer
+    responses:
+      200:
+        description: Ouvrage found
+      400:
+        description: Ouvrage not found
+    """
     ouvrage = serviceOuvrage.getOuvrageById(id_ouvrage)
     if ouvrage:     #Si l'ouvrage est trouvé
         return jsonify(ouvrage.serialize()), 200 
@@ -38,6 +64,18 @@ Avec tous les paramètres
 '''
 @ouvrage.route('/ouvrage' , methods=['POST'])
 def createOuvrage():
+    # swagger
+    """
+    Post : Ajouter un nouvel ouvrage
+    ---
+
+    responses:
+      200:
+        description: Ouvrage ajouté
+      400:
+        description: Ouvrage non ajouté
+    """    
+
     #récupération des données
     data = request.json
 
